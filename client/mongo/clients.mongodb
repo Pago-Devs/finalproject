@@ -1,6 +1,6 @@
-use('pagodevs-client');
+use('pagodevs-mongo');
 
-db.client.insertMany([{
+db.clients.insertMany([{
     name: "Olnar",
     cpf: "665.072.150-66",
 	email: "olnar@example.com",
