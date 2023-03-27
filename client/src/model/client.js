@@ -5,14 +5,14 @@ const addressSchema = new mongoose.Schema({
   street: { type: String, required: true },
   number: { type: String, required: true },
   complement: { type: String },
-  cep: { type: String, required: true },
+  zipCode: { type: String, required: true },
   city: { type: String, required: true },
   state: { type: String, required: true },
 });
 
 const cardSchema = new mongoose.Schema({
   _id: false,
-  number: { type: String, required: true },
+  numberCard: { type: String, required: true },
   name: { type: String, required: true },
   validity: { type: Date, required: true },
   cvc: { type: String, required: true },
