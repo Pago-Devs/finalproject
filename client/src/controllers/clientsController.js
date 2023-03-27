@@ -1,4 +1,4 @@
-import Client from '../model/client.js';
+import Client from '../model/clients.js';
 
 class ClientController {
   static async listClients(_req, res) {
