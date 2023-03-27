@@ -7,7 +7,12 @@ class TransactionController {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
-      return res.status(200).json(transaction);
+      const {
+        _id, amount, idClient, status,
+      } = transaction;
+      return res.status(200).json({
+        _id, amount, idClient, status,
+      });
     });
   };
 }
