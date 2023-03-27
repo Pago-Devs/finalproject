@@ -11,11 +11,11 @@
         "sourceType": "module"
     },
     "rules": {
-        "import/extensions": ["error", "ignorePackages", { "": "never"}],
+        "import/extensions": ["error", "ignorePackages", {"":"never"}],
+        "no-console":0,
         "linebreak-style": [
             "error",
             "windows"
-        ],
-        "no-console": 0
+        ]
     }
 }
