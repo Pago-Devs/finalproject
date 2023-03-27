@@ -1,14 +1,10 @@
-import mongoose from "mongoose";
-import * as dotenv from "dotenv";
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
 dotenv.config();
 
-const DB_HOST = process.env.NODE_ENV === "test" ? "127.0.0.1" : process.env.DB_HOST;
+mongoose.connect(process.env.MONGO_URI);
 
-mongoose.set("strictQuery", false);
-mongoose.connect(
-	`mongodb://admin:secret@${DB_HOST}:27017/ecomm?authSource=admin`
-);
-
-let db = mongoose.connection;
+const db = mongoose.connection;
 
 export default db;
