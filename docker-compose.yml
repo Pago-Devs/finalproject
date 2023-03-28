@@ -1,21 +1,26 @@
 version: "3.9"
 services:
-  client:
-    build: ./client
-    container_name: pagodevs-clients
-    ports:
-      - 3001:3001
-    depends_on:
-      - mongo
-  mongo:
-    image: mongo
+  mongodb:
+    image: mongo:5.0
+    volumes:
+      - db-pagodevs-mongo:/data/db
+    container_name: pagodevs-mongo
     restart: always
-    container_name: mongo
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: secret
+
+  transaction:
+    build: ./transaction
+    container_name: pagodevs-transaction
+    volumes:
+      - ./transaction/:/app/pagodevs-transaction
     ports:
-      - 27017:27017
+      - 3002:3002
+    depends_on:
+      - mongodb
 
-
-
+volumes:
+  db-pagodevs-mongo:
