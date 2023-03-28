@@ -6,10 +6,6 @@ db.once('open', () => {
   console.log('Db successfully connected!');
 });
 
-// db.once('error', (error) => {
-// console.log(error);
-//   });
-
 const app = express();
 app.use(express.json());
 app.use((err, _req, res, next) => {
