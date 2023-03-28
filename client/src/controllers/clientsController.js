@@ -23,7 +23,6 @@ class ClientController {
 
   static async findClientByNumberCard(req, res) {
     const { numberCard } = req.body;
-    console.log('oi', numberCard);
     try {
       const client = await Client.findOne({
         'cardData.numberCard': numberCard,
