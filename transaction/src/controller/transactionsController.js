@@ -46,7 +46,7 @@ class TransactionController {
       if (err) return res.status(500).send({ message: err.message });
       // eslint-disable-next-line no-underscore-dangle
       if (status === 'Em análise') {
-        await fetch('http://pagodevs-antifraud:3003/v1/analise/client', {
+        await fetch('http://pagodevs-antifraud:3003/v1/analysis', {
           method: 'POST',
           body: JSON.stringify({
             id: t.id,
@@ -61,6 +61,30 @@ class TransactionController {
       return res.status(201).json(result);
     });
   };
+  static updateStatus = (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    Transaction.findById(id, (err, transaction) => {
+      if (err) {
+        return res.status(500).send({ message: err.message });
+      }
+      if (transaction === null) {
+        return res.status(404).send({ message: 'Transaction not found!' });
+      }
+      if(transaction.status !== 'Em análise'){
+        return res.status(400).send({ message: 'Change not allowed'})
+      }
+    });
+    if (status === 'Aprovada' || status === 'Rejeitada'){
+      Transaction.findByIdAndUpdate(id, {$set: status},(err) => {
+        if (err) {
+         return res.status(500).send({ message: err.message });
+        }
+        return res.status(204).end();
+     });
+    } 
+    return res.status(400).send({ message: 'Change not allowed'});
+  }
 }
 
 export default TransactionController;
