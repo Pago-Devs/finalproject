@@ -4,4 +4,4 @@ COPY package*.json ./
 EXPOSE 3002
 RUN npm install
 COPY . .
-ENTRYPOINT npm run dev
+ENTRYPOINT npm start

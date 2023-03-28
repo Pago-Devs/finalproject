@@ -11,6 +11,8 @@
         "sourceType": "module"
     },
     "rules": {
-        "linebreak-style": 0
+        "import/extensions": [ "error", "ignorePackages", { "": "never" } ],
+        "linebreak-style": 0,
+        "no-console": 0
     }
 }
