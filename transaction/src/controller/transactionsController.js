@@ -17,7 +17,8 @@ class TransactionController {
         _id, amount, idClient, status,
       });
     });
-   },
+  };
+
   // eslint-disable-next-line consistent-return
   static createTransaction = async (req, res) => {
     // const resultTransaction = await fetch('http://pagodevs-client:3001/v1/clients/verify')
@@ -30,8 +31,8 @@ class TransactionController {
     if ((resultTransaction.monthlyIncome * 0.5) > req.body.amount) {
       status = 'Em análise';
       // const resultAntiFraud = await fetch('http://pagodevs-client:3001/v1/clients/verify')
-    //   .then((response) => response.json());
-    console.log('testeee');
+      //   .then((response) => response.json());
+      console.log('testeee');
     } else {
       status = 'Aprovada';
     }
@@ -39,8 +40,8 @@ class TransactionController {
     transaction.save((err, t) => {
       if (err) return res.status(500).send({ message: err.message });
       // eslint-disable-next-line no-underscore-dangle
-      const result = {id: t.id, status}
-      return res.status(201).json( result );
+      const result = { id: t.id, status };
+      return res.status(201).json(result);
     });
   };
 }
