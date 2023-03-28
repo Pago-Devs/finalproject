@@ -33,11 +33,12 @@ class antiFraudController {
   };
 
   static getDataClient = async (req, res) => {
-    const id = req.params;
+    const { id } = req.params;
+    console.log(id);
     try {
       const result = await AntiFraud.findById(id);
       const dataClient = await fetch(
-        `http://localhost:3001/v1/clients/${result.idClient}`,
+        `http://pagodevs-client:3001/v1/clients/${result.clientId}`,
       ).then((response) => response.json());
       res.status(200).json(dataClient);
     } catch (err) {

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://admin:secret@localhost:27017/pagodevs-antifraud?authSource=admin');
+mongoose.connect('mongodb://admin:secret@mongodb:27017/pagodevs-antifraud?authSource=admin');
 
 const db = mongoose.connection;
 

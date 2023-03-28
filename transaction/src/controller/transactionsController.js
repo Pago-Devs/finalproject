@@ -22,7 +22,7 @@ class TransactionController {
   // eslint-disable-next-line consistent-return
   static createTransaction = async (req, res) => {
     const response = await fetch('http://pagodevs-client:3001/v1/clients/verify', {
-      method: 'GET',
+      method: 'POST',
       body: JSON.stringify({
         cardData: req.body.cardData,
       }),
@@ -31,9 +31,10 @@ class TransactionController {
       },
     });
     const resultTransaction = await response.json();
+    console.log('resposta client', resultTransaction);
     const { _id: clientId, monthlyIncome, message } = resultTransaction;
     // const resultTransaction = { id: '63d94cc7f8c08a1d745cb167', monthlyIncome: 4000 };
-    if (message === 'Dados inválidos') return res.status(422).send({ message: 'Dados Inválidos' });
+    if (message === 'Invalid Data' || message === 'Not Found!') return res.status(422).send({ message: 'Invalid Data' });
 
     let status = '';
     if ((monthlyIncome * 0.5) <= req.body.amount) {
@@ -46,7 +47,7 @@ class TransactionController {
       if (err) return res.status(500).send({ message: err.message });
       // eslint-disable-next-line no-underscore-dangle
       if (status === 'Em análise') {
-        await fetch('http://pagodevs-antifraud:3003/v1/analise/client', {
+        await fetch('http://pagodevs-antifraud:3003/v1/analysis', {
           method: 'POST',
           body: JSON.stringify({
             id: t.id,
