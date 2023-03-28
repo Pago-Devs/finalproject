@@ -7,6 +7,9 @@ class TransactionController {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
+      if (transaction === null) {
+        return res.status(404).send({ message: 'Transaction not found!' });
+      }
       const {
         _id, amount, idClient, status,
       } = transaction;
