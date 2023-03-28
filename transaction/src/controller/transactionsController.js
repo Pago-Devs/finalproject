@@ -31,7 +31,7 @@ class TransactionController {
       },
     });
     const resultTransaction = await response.json();
-    const { clientId, monthlyIncome, message } = resultTransaction;
+    const { _id: clientId, monthlyIncome, message } = resultTransaction;
     // const resultTransaction = { id: '63d94cc7f8c08a1d745cb167', monthlyIncome: 4000 };
     if (message === 'Dados inválidos') return res.status(422).send({ message: 'Dados Inválidos' });
 
