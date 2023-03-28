@@ -14,7 +14,7 @@ const cardSchema = new mongoose.Schema({
   _id: false,
   numberCard: { type: String, required: true },
   name: { type: String, required: true },
-  expirationDate: { type: Date, required: true },
+  expirationDate: { type: String, required: true },
   cvc: { type: String, required: true },
   dueDate: { type: Number, required: true },
 });
