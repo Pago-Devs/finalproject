@@ -46,7 +46,7 @@ class TransactionController {
       if (err) return res.status(500).send({ message: err.message });
       // eslint-disable-next-line no-underscore-dangle
       if (status === 'Em análise') {
-        await fetch('http://pagodevs-antifraud:3003/v1/analise/client', {
+        await fetch('http://pagodevs-antifraud:3003/v1/analysis', {
           method: 'POST',
           body: JSON.stringify({
             id: t.id,
