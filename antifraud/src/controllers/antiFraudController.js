@@ -3,7 +3,7 @@ import AntiFraud from '../models/antifraud.js';
 
 class antiFraudController {
   static createAnalysis = async (req, res) => {
-    const { clientId, transactionId } = req.body;
+    const { clientId, id: transactionId } = req.body;
     const newAnalysis = new AntiFraud({ clientId, transactionId });
 
     try {

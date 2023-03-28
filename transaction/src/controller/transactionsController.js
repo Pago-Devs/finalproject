@@ -62,30 +62,33 @@ class TransactionController {
       return res.status(201).json(result);
     });
   };
+
   static updateStatus = (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
     Transaction.findById(id, (err, transaction) => {
+      console.log(transaction.status);
       if (err) {
         return res.status(500).send({ message: err.message });
       }
       if (transaction === null) {
         return res.status(404).send({ message: 'Transaction not found!' });
       }
-      if(transaction.status !== 'Em análise'){
-        return res.status(400).send({ message: 'Change not allowed'})
+      if (transaction.status !== 'Em análise') {
+        return res.status(400).send({ message: 'Change not allowed' });
       }
     });
-    if (status === 'Aprovada' || status === 'Rejeitada'){
-      Transaction.findByIdAndUpdate(id, {$set: status},(err) => {
-        if (err) {
-         return res.status(500).send({ message: err.message });
+    if (status === 'Aprovada' || status === 'Rejeitada') {
+      Transaction.findByIdAndUpdate(id, { $set: { status } }, (err) => {
+        if (!err) {
+          return res.status(204).send();
         }
-        return res.status(204).end();
-     });
-    } 
-    return res.status(400).send({ message: 'Change not allowed'});
-  }
+        return res.status(500).send({ message: err.message });
+      });
+    } else {
+      return res.status(400).send({ message: 'Change not allowed' });
+    }
+  };
 }
 
 export default TransactionController;
