@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './categorieRoute.js';
+import router from './antiFraudRoute.js';
 
 const routes = (app) => {
   app.route('/').get((req, res) => {
