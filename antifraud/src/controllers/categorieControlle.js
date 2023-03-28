@@ -12,6 +12,22 @@ class categoryController {
       res.status(500).json({ message: `${err.message} - Erro ao criar análise anti-fraude!`});
     }
   };
+
+  static listOfCategories = async (req, res) => {
+    try {
+      const analysis = await Category.find({ status: 'Em análise' });
+      const CategoryAnalysis = analysis.map((Analysis) => ({
+        id: Analysis._id,
+        clientId: Analysis.clienteId,
+        transactionId: Analysis.transactionId,
+        status: Analysis.status,
+      }));
+      res.status(200).json(CategoryAnalysis);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Erro ao listar análises anti-fraude!');
+    }
+  }
 }
 
 export default categoryController;
