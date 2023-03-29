@@ -49,24 +49,19 @@ class antiFraudController {
 
   static updateAnalysis = async (req, res) => {
     const { transactionId, status } = req.body;
-    console.log(req.body.status);
-    await fetch(`http://pagodevs-transaction:3002/v1/transaction/${transactionId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        status: status,
-      }),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    });
-    // const analysis = await AntiFraud.findById(response.transactionId);
-    // if (analysis.status === 'Em análise' && (response.newStatus === 'Rejeitada' || response.newStatus === 'Aprovada')) {
-    //   // eslint-disable-next-line max-len
-    //   const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status: response.newStatus });
-    //   return res.status(201).json(result);
-    // }
-    // return res.status(400);
-    return res.status(201).json({ message: 'Status updated' });
+    if (status === 'Rejeitada' || status === 'Aprovada') {
+      await fetch(`http://pagodevs-transaction:3002/v1/transaction/${transactionId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          status: status,
+        }),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      });
+      return res.status(201).json({ message: 'Status updated' });
+    }
+    return res.status(422).json({ message: 'Change not allowed' });
   };
 }
 
