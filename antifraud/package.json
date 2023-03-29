@@ -1,25 +1,24 @@
 {
-  "name": "anti-fraude",
+  "name": "antifraud",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node ./index.js",
-    "dev": "nodemon ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "eslint": "^8.37.0",
     "express": "^4.18.2",
-    "mongoose": "^6.2.6"
-  },
-  "devDependencies": {
-    "eslint": "^8.36.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.10.4",
     "nodemon": "^2.0.22"
   }
 }
