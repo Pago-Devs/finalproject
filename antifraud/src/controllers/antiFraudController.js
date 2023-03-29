@@ -73,7 +73,11 @@ class antiFraudController {
       const result = await response.json();
 
       if (result.status) {
+<<<<<<< HEAD
         await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
+=======
+        const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
+>>>>>>> 2f25039 (fix: fixed third integration(updatestatus))
         res.status(200).json({ message: 'Status updated' });
       } else {
         res.status(response.status).json(result.message);
