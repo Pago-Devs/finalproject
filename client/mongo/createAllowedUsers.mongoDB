@@ -1,4 +1,4 @@
-use('pagodevs-client');
+use('pagodevs-clients');
 
 db.apiconsumers.insertMany([{
 	email: "bryam@example.com",
