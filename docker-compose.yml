@@ -44,9 +44,9 @@ services:
 
   api-gateway:
     build: ./api-gateway
-    container_name: ecomm-api-gateway
+    container_name: pagodevs-api-gateway
     volumes:
-      - ./api-gateway:/app/ecomm-api-gateway
+      - ./api-gateway:/app/pagodevs-api-gateway
     ports:
       - 3000:3000
     depends_on:
