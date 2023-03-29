@@ -1,6 +1,6 @@
 use('pagodevs-transaction');
 
-db.apiConsumers.insertMany([{
+db.apiconsumers.insertMany([{
 	email: "bryam@example.com",
     password: "$2a$12$WT.Biyky1weY.yV8VB8L6unA8MSAVD6kb5lkLhXsZatuBZS51LhTC"
     //bryam123
