@@ -1,5 +1,5 @@
 FROM node
-WORKDIR /app/pagodevs-clients
+WORKDIR /pagodevs-antifraud
 COPY . .
-EXPOSE 3001
+EXPOSE 3003
 ENTRYPOINT npm run dev

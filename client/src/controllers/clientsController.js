@@ -8,7 +8,7 @@ class ClientController {
     try {
       const result = await Client.findById(id);
       const resultSucess = {
-        message: 'Sucesso',
+        message: 'Sucess',
         name: result.name,
         cpf: result.cpf,
         numberCard: result.cardData.numberCard,
@@ -21,8 +21,8 @@ class ClientController {
 
   static async findClientByNumberCard(req, res) {
     const {
-      numberCard, expirationDate, cvv, name,
-    } = req.body;
+      name, cvc, numberCard, expirationDate,
+    } = req.body.cardData;
 
     const client = await Client.findOne({
       'cardData.numberCard': numberCard,
@@ -32,11 +32,11 @@ class ClientController {
       return res.status(404).json({ message: 'Not Found!' });
     }
 
-    if (client.cardData.cvc === cvv) {
+    if (client.cardData.cvc === cvc) {
       if (client.cardData.expirationDate === expirationDate) {
         if (client.cardData.name === name) {
           const resultSucess = {
-            message: 'Sucesso',
+            message: 'Sucess',
             _id: client._id,
             monthlyIncome: client.monthlyIncome,
           };
@@ -45,7 +45,7 @@ class ClientController {
       }
     }
     const resultError = {
-      message: 'Dados Inválidos',
+      message: 'Invalid Data',
       _id: '',
       monthlyIncome: '',
     };
