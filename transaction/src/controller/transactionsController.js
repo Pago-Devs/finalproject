@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Transaction from '../model/Transaction.js';
 
 class TransactionController {
@@ -19,7 +20,6 @@ class TransactionController {
     });
   };
 
-  // eslint-disable-next-line consistent-return
   static createTransaction = async (req, res) => {
     const response = await fetch('http://pagodevs-client:3001/v1/clients/verify', {
       method: 'POST',
@@ -31,11 +31,11 @@ class TransactionController {
       },
     });
     const resultTransaction = await response.json();
-    console.log('resposta client', resultTransaction);
     const { _id: clientId, monthlyIncome, message } = resultTransaction;
-    // const resultTransaction = { id: '63d94cc7f8c08a1d745cb167', monthlyIncome: 4000 };
+
     if (message === 'Invalid Data' || message === 'Not Found!') return res.status(422).send({ message: 'Invalid Data' });
 
+    let links;
     let status = '';
     if ((monthlyIncome * 0.5) <= req.body.amount) {
       status = 'Em análise';
@@ -47,6 +47,26 @@ class TransactionController {
       if (err) return res.status(500).send({ message: err.message });
       // eslint-disable-next-line no-underscore-dangle
       if (status === 'Em análise') {
+        links = [
+          {
+            rel: 'self',
+            method: 'GET',
+            href: `http://pagodevs-transaction:3002/v1/transaction/${t.id}`,
+          },
+          {
+            rel: 'confirmation',
+            method: 'PATCH',
+            status: 'APROVADA',
+            href: `http://pagodevs-transaction:3002/v1/transaction/${t.id}`,
+          },
+          {
+            rel: 'cancellation',
+            method: 'PATCH',
+            status: 'REJEITADA',
+            href: `http://pagodevs-transaction:3002/v1/transaction/${t.id}`,
+          },
+        ];
+
         await fetch('http://pagodevs-antifraud:3003/v1/analysis', {
           method: 'POST',
           body: JSON.stringify({
@@ -58,7 +78,14 @@ class TransactionController {
           },
         });
       }
-      const result = { id: t.id, status };
+      links = [
+        {
+          rel: 'self',
+          method: 'GET',
+          href: `http://pagodevs-transaction:3002/v1/transaction/${t.id}`,
+        },
+      ];
+      const result = { id: t.id, status, links };
       return res.status(201).json(result);
     });
   };
@@ -67,7 +94,6 @@ class TransactionController {
     const { id } = req.params;
     const { status } = req.body;
     Transaction.findById(id, (err, transaction) => {
-      console.log(transaction.status);
       if (err) {
         return res.status(500).send({ message: err.message });
       }
