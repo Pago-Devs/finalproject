@@ -17,7 +17,7 @@ db.clients.insertMany([{
     cardData: {
         name: "Olnar T Silva",
         numberCard: "5537464499559077",
-        expirationDate: "27/02/2024",
+        expirationDate: "02-2024",
         cvc: "554",
         dueDate: 1
     }
@@ -38,7 +38,7 @@ db.clients.insertMany([{
     cardData: {
         name: "Cayis E Souza",
         numberCard: "5344374117792369",
-        expirationDate: "27/06/2024",
+        expirationDate: "2024-06",
         cvc: "237",
         dueDate: 5
     }
@@ -59,7 +59,7 @@ db.clients.insertMany([{
     cardData: {
         name: "Naxun P Santos",
         numberCard: "5443398017082308",
-        expirationDate: "27/06/2024",
+        expirationDate: "2024-06",
         cvc: "496",
         dueDate: 10
     }
@@ -80,7 +80,7 @@ db.clients.insertMany([{
     cardData: {
         name: "Rirod A Pereira",
         numberCard: "5494095717804209",
-        expirationDate: "27/10/2023",
+        expirationDate: "10-2023",
         cvc: "939",
         dueDate: 25
     }
@@ -101,7 +101,7 @@ db.clients.insertMany([{
     cardData: {
         name: "Fomyu S Aquiles",
         numberCard: "5187123668314507",
-        expirationDate: "27/06/2024",
+        expirationDate: "2024-06",
         cvc: "343",
         dueDate: 30
     }
