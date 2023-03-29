@@ -22,5 +22,25 @@ services:
     depends_on:
       - mongodb
 
+  client:
+    build: ./client
+    container_name: pagodevs-client
+    volumes:
+      - ./client/:/app/pagodevs-client
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongodb
+
+  antifraud:
+    build: ./antifraud
+    container_name: pagodevs-antifraud
+    volumes:
+      - ./antifraud/:/app/pagodevs-antifraud
+    ports:
+      - 3003:3003
+    depends_on:
+      - mongodb
+
 volumes:
   db-pagodevs-mongo:

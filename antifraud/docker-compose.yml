@@ -1,0 +1,16 @@
+version: "3.9"
+services: 
+  mongo:
+    container_name: mongo-antifraud
+    image: mongo:5.0
+    volumes:
+      - db-mongo-antifraud:/data/db
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      
+volumes:
+  db-mongo-antifraud:
