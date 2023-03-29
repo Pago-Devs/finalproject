@@ -7,7 +7,7 @@ const router = express.Router();
 const authenticateLocal = passport.authenticate('local', { session: false });
 
 router
-  .post('/clients/login', authenticateLocal, ClientController.login)
+  .post('/v1/clients/login', authenticateLocal, ClientController.login)
   .post('/v1/clients/verify', ClientController.findClientByNumberCard)
   .get('/v1/clients/:id', ClientController.getClientByID);
 
