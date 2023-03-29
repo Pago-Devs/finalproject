@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './antiFraudRoute.js';
+import router from './antiFraudRoutes.js';
 
 const routes = (app) => {
   app.route('/').get((req, res) => {

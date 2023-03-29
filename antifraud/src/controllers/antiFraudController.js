@@ -1,8 +1,20 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable no-underscore-dangle */
 import AntiFraud from '../models/antifraud.js';
+import generateToken from '../utils/generateToken.js';
 
 class antiFraudController {
+  static login = (req, res) => {
+    try {
+      console.log('chegou aqui');
+      const { id } = req.user;
+      const token = generateToken(id);
+      res.status(204).set('Authorization', token).send();
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
+  };
+
   static createAnalysis = async (req, res) => {
     const { clientId, id: transactionId } = req.body;
     const newAnalysis = new AntiFraud({ clientId, transactionId });
