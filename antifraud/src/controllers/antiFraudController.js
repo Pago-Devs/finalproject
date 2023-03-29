@@ -45,6 +45,21 @@ class antiFraudController {
       res.status(404).json(err.message);
     }
   };
+
+  static updateAnalysis = async (req, res) => {
+    const response = await fetch('http://pagodevs-antifraud:3002/v1/transaction/:id', {
+      method: 'PATCH',
+      transactionId: req.params.transactionId,
+      newStatus: req.body.status,
+    });
+    const analysis = await AntiFraud.findById(response.transactionId);
+    if (analysis.status === 'Em análise' && (response.newStatus === 'Rejeitada' || response.newStatus === 'Aprovada')) {
+      // eslint-disable-next-line max-len
+      const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status: response.newStatus });
+      return res.status(201).json(result);
+    }
+    return res.status(400);
+  };
 }
 
 export default antiFraudController;
