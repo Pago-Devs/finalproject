@@ -19,16 +19,19 @@ class antiFraudController {
     const newAnalysis = new AntiFraud({ clientId, transactionId });
 
     try {
-      await newAnalysis.save();
-      res.status(200).send('Análise anti-fraude criada com sucesso!');
+      const analysis = await newAnalysis.save();
+      if (!analysis) {
+        res.status(400).send('Not Created');
+      } else {
+        res.status(201).send('Successfully Created!');
+      }
+
     } catch (err) {
-      res.status(500).json({
-        message: `${err.message} - Erro ao criar análise anti-fraude!`,
-      });
+      res.status(500).json({ message: err.message });
     }
   };
 
-  static listAnalysis = async (req, res) => {
+  static listAnalysis = async (_req, res) => {
     try {
       const analisysFraud = await AntiFraud.find({ status: 'Em análise' });
       const antiFraudAnalysis = analisysFraud.map((analysis) => ({
@@ -40,7 +43,7 @@ class antiFraudController {
       res.status(200).json(antiFraudAnalysis);
     } catch (err) {
       console.log(err);
-      res.status(500).send('Erro ao listar análises anti-fraude!');
+      res.status(500).json({ message: err.message });
     }
   };
 
