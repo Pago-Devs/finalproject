@@ -6,7 +6,6 @@ import generateToken from '../utils/generateToken.js';
 class antiFraudController {
   static login = (req, res) => {
     try {
-      console.log('chegou aqui');
       const { id } = req.user;
       const token = generateToken(id);
       res.status(204).set('Authorization', token).send();

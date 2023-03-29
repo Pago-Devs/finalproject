@@ -3,6 +3,7 @@ import rateLimit from 'express-rate-limit';
 import antifraud from './routes/antifraudRoutes.js';
 import client from './routes/clientRoutes.js';
 import transaction from './routes/transactionRoutes.js';
+import './middlewares/authStrategies.js';
 
 const app = express();
 const limiter = rateLimit({

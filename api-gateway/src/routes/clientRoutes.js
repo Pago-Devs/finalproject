@@ -1,5 +1,5 @@
 import express from 'express';
-// import passport from 'passport';
+import passport from 'passport';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const clientRoutes = express.Router();
@@ -10,11 +10,11 @@ const accountProxy = createProxyMiddleware({
   changeOrigin: true,
 });
 
-// const authenticateBearer = passport.authenticate('bearer', { session: false });
+const authenticateBearer = passport.authenticate('bearer', { session: false });
 
 clientRoutes
   .post('/clients/login', accountProxy)
-  .post('/v1/clients/verify', accountProxy)
-  .get('/v1/clients/:id', accountProxy);
+  .post('/v1/clients/verify', authenticateBearer, accountProxy)
+  .get('/v1/clients/:id', authenticateBearer, accountProxy);
 
 export default clientRoutes;
