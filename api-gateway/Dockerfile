@@ -1,5 +1,5 @@
 FROM node
-WORKDIR /app/pagodevs-antifraud
+WORKDIR /app/pagodevs-api-gateway
 COPY package*.json ./
 EXPOSE 3000
 RUN npm install
