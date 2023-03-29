@@ -90,15 +90,16 @@ class TransactionController {
             'Content-Type': 'application/json; charset=UTF-8',
           },
         });
-      } else {
-        links = [
-          {
-            rel: 'self',
-            method: 'GET',
-            href: `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`,
-          },
-        ];
+        const result = { id: transaction.id, status, links };
+        return res.status(303).set('Location', `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`).json(result);
       }
+      links = [
+        {
+          rel: 'self',
+          method: 'GET',
+          href: `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`,
+        },
+      ];
       const result = { id: transaction.id, status, links };
       return res.status(201).json(result);
     } catch (error) {

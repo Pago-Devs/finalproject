@@ -4,7 +4,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import ApiConsumer from '../model/ApiConsumers.js';
 import createCustomError from './customError.js';
 
-const decrypt = (password, hash) => bcrypt.compare(password, hash);
+const decrypt = (password, hash) => bcrypt.compareSync(password, hash);
 
 const verifyPassword = (password, hash) => {
   if (!decrypt(password, hash)) {
