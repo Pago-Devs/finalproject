@@ -67,7 +67,7 @@ class TransactionController {
     const { id } = req.params;
     const { status } = req.body;
     Transaction.findById(id, (err, transaction) => {
-      console.log(transaction.status);
+      console.log(status);
       if (err) {
         return res.status(500).send({ message: err.message });
       }
