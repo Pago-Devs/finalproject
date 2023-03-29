@@ -20,11 +20,11 @@ class ClientController {
 
     try {
       const result = await Client.findById(id);
+      const cpf = (result.cpf).slice(0, 3);
       const resultSucess = {
         message: 'Sucess',
         name: result.name,
-        cpf: result.cpf,
-        numberCard: result.cardData.numberCard,
+        cpf: `${cpf}.***.***-**`,
       };
       res.status(200).send(resultSucess);
     } catch (error) {
@@ -37,33 +37,34 @@ class ClientController {
       name, cvc, numberCard, expirationDate,
     } = req.body.cardData;
 
-    const client = await Client.findOne({
-      'cardData.numberCard': numberCard,
-    });
+    try {
+      const resulFindAll = await Client.find();
 
-    if (!client) {
-      return res.status(404).json({ message: 'Not Found!' });
-    }
+      const client = resulFindAll.find((clients) => (
+        bcrypt.compareSync(numberCard, clients.cardData.numberCard)));
+      console.log(client);
 
-    if (client.cardData.cvc === cvc) {
-      if (client.cardData.expirationDate === expirationDate) {
-        if (client.cardData.name === name) {
-          const resultSucess = {
-            message: 'Sucess',
-            _id: client._id,
-            monthlyIncome: client.monthlyIncome,
-          };
-          return res.status(200).send(resultSucess);
-        }
+      if ((client.cardData.name === name)
+      && (bcrypt.compareSync(expirationDate, client.cardData.expirationDate))
+      && (bcrypt.compareSync(cvc, client.cardData.cvc))) {
+        const resultSucess = {
+          message: 'Sucess',
+          _id: client._id,
+          monthlyIncome: client.monthlyIncome,
+        };
+        console.log(resultSucess);
+        res.status(200).send(resultSucess);
+      } else {
+        const resultError = {
+          message: 'Invalid Data',
+          _id: '',
+          monthlyIncome: '',
+        };
+        res.status(404).json(resultError);
       }
+    } catch (error) {
+      res.status(500).json(error.message);
     }
-    const resultError = {
-      message: 'Invalid Data',
-      _id: '',
-      monthlyIncome: '',
-    };
-
-    return res.status(400).send(resultError);
   }
 
   static login = async (req, res) => {
