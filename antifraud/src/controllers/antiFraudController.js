@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable no-underscore-dangle */
 import AntiFraud from '../models/antifraud.js';
 
@@ -47,18 +48,25 @@ class antiFraudController {
   };
 
   static updateAnalysis = async (req, res) => {
-    const response = await fetch('http://pagodevs-antifraud:3002/v1/transaction/:id', {
+    const { transactionId, status } = req.body;
+    console.log(req.body.status);
+    await fetch(`http://pagodevs-transaction:3002/v1/transaction/${transactionId}`, {
       method: 'PATCH',
-      transactionId: req.params.transactionId,
-      newStatus: req.body.status,
+      body: JSON.stringify({
+        status: status,
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
     });
-    const analysis = await AntiFraud.findById(response.transactionId);
-    if (analysis.status === 'Em análise' && (response.newStatus === 'Rejeitada' || response.newStatus === 'Aprovada')) {
-      // eslint-disable-next-line max-len
-      const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status: response.newStatus });
-      return res.status(201).json(result);
-    }
-    return res.status(400);
+    // const analysis = await AntiFraud.findById(response.transactionId);
+    // if (analysis.status === 'Em análise' && (response.newStatus === 'Rejeitada' || response.newStatus === 'Aprovada')) {
+    //   // eslint-disable-next-line max-len
+    //   const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status: response.newStatus });
+    //   return res.status(201).json(result);
+    // }
+    // return res.status(400);
+    return res.status(201).json({ message: 'Status updated' });
   };
 }
 
