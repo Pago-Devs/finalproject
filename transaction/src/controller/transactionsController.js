@@ -1,7 +1,15 @@
 /* eslint-disable consistent-return */
 import Transaction from '../model/Transaction.js';
+import generateToken from '../utils/generateToken.js';
 
 class TransactionController {
+  static login = (req, res) => {
+    console.log(req);
+    const { id } = req.user;
+    const token = generateToken(id);
+    res.status(204).set('Authorization', token).send();
+  };
+
   static findTransactionById = (req, res) => {
     const { id } = req.params;
     Transaction.findById(id, (err, transaction) => {
