@@ -35,9 +35,8 @@ class antiFraudController {
 
   static getDataClient = async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     try {
-      const result = await AntiFraud.findById(id);
+      const result = await AntiFraud.findOne({transctionId: id});
       const dataClient = await fetch(
         `http://pagodevs-client:3001/v1/clients/${result.clientId}`,
       ).then((response) => response.json());
@@ -49,25 +48,28 @@ class antiFraudController {
 
   static updateAnalysis = async (req, res) => {
     const { transactionId, status } = req.body;
-    console.log(req.body.status);
-    await fetch(`http://pagodevs-transaction:3002/v1/transaction/${transactionId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        status: status,
-      }),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    });
-    // const analysis = await AntiFraud.findById(response.transactionId);
-    // if (analysis.status === 'Em análise' && (response.newStatus === 'Rejeitada' || response.newStatus === 'Aprovada')) {
-    //   // eslint-disable-next-line max-len
-    //   const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status: response.newStatus });
-    //   return res.status(201).json(result);
-    // }
-    // return res.status(400);
-    return res.status(201).json({ message: 'Status updated' });
-  };
+    try {
+      const response = await fetch(`http://pagodevs-transaction:3002/v1/transaction/${transactionId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          status: status,
+        }),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      });
+      const result = await response.json();
+  
+      if (result.status){
+        const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
+        res.status(200).json({ message: 'Status updated' });
+      } else {
+        res.status(response.status).json(result.message);
+      }
+    } catch(err) {
+      res.status(500).json(err.message);
+    }
+  }
 }
 
 export default antiFraudController;
