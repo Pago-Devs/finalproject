@@ -26,8 +26,6 @@ const validateTransaction = (req, res, next) => {
     cardData: cardDataSchema,
   });
 
-  console.log('vaaalidade');
-
   const { error } = schema.validate(req.body);
 
   if (error) {
