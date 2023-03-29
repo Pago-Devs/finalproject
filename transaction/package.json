@@ -16,7 +16,9 @@
   "dependencies": {
     "express": "^4.18.2",
     "joi": "^17.9.1",
-    "mongoose": "^6.10.4"
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.10.4",
+    "passport-http-bearer": "^1.0.1"
   },
   "devDependencies": {
     "eslint": "^8.36.0",
