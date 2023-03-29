@@ -28,7 +28,7 @@ const validateClient = (req, res, next) => {
     name: Joi.string()
       .required(),
     expirationDate: Joi.string()
-      .pattern(/(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[012])\/(19|20)\d{2}/),
+      .pattern(/\d{4}-\d{2}/),
     cvc: Joi.string()
       .min(3)
       .max(3)
@@ -45,7 +45,7 @@ const validateClient = (req, res, next) => {
       .required(),
     cpf: Joi.string()
       .min(11)
-      .max(11)
+      .max(14)
       .pattern(/\d{3}\.?\d{3}\.?\d{3}-?\d{2}/),
     email: Joi.string()
       .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'br'] } })

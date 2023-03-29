@@ -1,5 +1,5 @@
 FROM node
-WORKDIR /pagodevs-antifraud
+WORKDIR /app/pagodevs-antifraud
 COPY . .
 EXPOSE 3003
-ENTRYPOINT npm run dev
+ENTRYPOINT npm start

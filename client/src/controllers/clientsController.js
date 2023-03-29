@@ -1,6 +1,19 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-underscore-dangle */
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import Client from '../model/clients.js';
 
+function generateToken(consumer) {
+  const payload = {
+    subject: consumer._id,
+  };
+  const newToken = jwt.sign(payload, process.env.APP_SECRET, {
+    expiresIn: '15m',
+  });
+  return newToken;
+}
 class ClientController {
   static getClientByID = async (req, res) => {
     const { id } = req.params;
@@ -52,6 +65,11 @@ class ClientController {
 
     return res.status(400).send(resultError);
   }
+
+  static login = async (req, res) => {
+    const token = await generateToken(req.user);
+    return res.set('Authorization', token).status(204).send();
+  };
 }
 
 export default ClientController;
