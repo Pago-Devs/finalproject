@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: AntiFraud
+  version: 0.0.1
+  contact:
+    name: PagoDevs
+paths:
+  /v1/analysis/:
+    post:
+      summary: Create a analyse antifraud
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              example: Ok
+  /v1/analysis/all:
+    get:
+      summary: Find all analysis antifraud
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AntiFraud'
+  /v1/analysis/dataclient/{id}:
+    get:
+      summary: Find a analyse antifraud by id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataClient'
+        '404':
+          description: Error data
+          content:
+            application/json:
+              example: Not Found
+  /v1/analysis/updatestatus:
+    get:
+      summary: Update status in transaction
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example: Status updated
+
+components:
+  schemas:
+    AntiFraud:
+      type: object
+      properties:
+        id:
+          type: string
+        clientId:
+          type: string
+        transactionId:
+          type: string
+        status:
+          type: string
+    DataClient:
+      type: object
+      properties:
+        name:
+          type: string
+        cpf:
+          type: string
+        cardNumber:
+          type: string
