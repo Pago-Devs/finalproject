@@ -22,7 +22,24 @@ class antiFraudController {
       if (!analysis) {
         res.status(400).send('Not Created');
       } else {
-        res.status(201).send('Successfully Created!');
+        const linksAnalysis = [
+          {
+            rel: 'confirmation',
+            method: 'PATCH',
+            antiFraudID: `${analysis._id}`,
+            status: 'APROVADA',
+            href: 'http://pagodevs-antifraud:3003/v1/transaction/updatestatus/',
+          },
+          {
+            rel: 'cancellation',
+            method: 'PATCH',
+            antiFraudID: `${analysis._id}}`,
+            status: 'REJEITADA',
+            href: 'http://pagodevs-antifraud:3003/v1/transaction/updatestatus/',
+          },
+        ];
+        const result = { msg: 'New anti fraud analysis created successfully', linksAnalysis };
+        res.status(201).json(result);
       }
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -73,11 +90,7 @@ class antiFraudController {
       const result = await response.json();
 
       if (result.status) {
-<<<<<<< HEAD
         await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
-=======
-        const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
->>>>>>> 2f25039 (fix: fixed third integration(updatestatus))
         res.status(200).json({ message: 'Status updated' });
       } else {
         res.status(response.status).json(result.message);
