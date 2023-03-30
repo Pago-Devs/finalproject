@@ -17,6 +17,6 @@ antifraudRoutes
   .post('/v1/analysis/', authenticateBearer, accountProxy)
   .get('/v1/analysis', authenticateBearer, accountProxy)
   .get('/v1/analysis/dataclient/:id', authenticateBearer, accountProxy)
-  .post('/v1/analysis/updatestatus', authenticateBearer, accountProxy);
+  .patch('/v1/analysis/updatestatus', authenticateBearer, accountProxy);
 
 export default antifraudRoutes;

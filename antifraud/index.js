@@ -18,3 +18,5 @@ app.listen(port, () => {
 });
 
 routes(app);
+
+export default app;

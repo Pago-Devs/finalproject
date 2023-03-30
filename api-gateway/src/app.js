@@ -8,7 +8,7 @@ import './middlewares/authStrategies.js';
 const app = express();
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000,
-  max: 100,
+  max: 200,
 });
 
 app.use('/', limiter);

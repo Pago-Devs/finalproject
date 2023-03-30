@@ -5,7 +5,24 @@ info:
   contact:
     name: PagoDevs
 paths:
-  /v1/transaction/{id}:
+  /v1/transaction/login:
+    post:
+      summary: Login
+      responses:
+        '204':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '500':
+          description: Login failed
+          content:
+            application/json:
+              example: Bad Request
+  /v1/transaction/:id:
     get:
       summary: Find the transaction
       responses:
@@ -22,21 +39,21 @@ paths:
           content:
             application/json:
               example: Transaction not Found
+        '500':
+          description: No transaction registered
+          content:
+            application/json:
+              example: Transaction not Found
     patch:
       summary: Update the status
       responses:
         '204':
           description: Success
-        '404':
-          description: No data entered
+        '500':
+          description: No category registered
           content:
             application/json:
               example: Transaction not Found
-        '400':
-          description: Incorrect data
-          content:
-            application/json:
-              example: Change not allowed
   /v1/transaction:
     post:
       summary: Create a transaction
@@ -49,6 +66,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Transaction'
+        '422':
+          description: Invalid data
+          content:
+            application/json:
+              example: TInvalid data
+        '500':
+          description: Failed to save transaction
+          content:
+            application/json:
+              example: Error
 components:
   schemas:
     Transaction:

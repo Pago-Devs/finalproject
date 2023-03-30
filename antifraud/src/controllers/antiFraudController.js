@@ -66,11 +66,9 @@ class antiFraudController {
     const { id } = req.params;
     try {
       const result = await AntiFraud.findOne({ transctionId: id });
-      console.log(result.clientId);
       const dataClient = await fetch(
         `http://pagodevs-client:3001/v1/clients/${result.clientId}`,
       ).then((response) => response.json());
-      console.log(dataClient);
       res.status(200).json(dataClient);
     } catch (err) {
       res.status(404).json(err.message);
