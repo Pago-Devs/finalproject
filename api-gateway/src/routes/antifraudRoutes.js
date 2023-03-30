@@ -15,7 +15,7 @@ const authenticateBearer = passport.authenticate('bearer', { session: false });
 antifraudRoutes
   .post('/v1/analysis/login', accountProxy)
   .post('/v1/analysis/', authenticateBearer, accountProxy)
-  .get('/v1/analysis/all', authenticateBearer, accountProxy)
+  .get('/v1/analysis', authenticateBearer, accountProxy)
   .get('/v1/analysis/dataclient/:id', authenticateBearer, accountProxy)
   .post('/v1/analysis/updatestatus', authenticateBearer, accountProxy);
 

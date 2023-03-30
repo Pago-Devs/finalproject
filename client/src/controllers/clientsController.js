@@ -1,9 +1,12 @@
-import Client from '../model/clients.js';
-import CryptoJS from "crypto-js";
+/* eslint-disable no-underscore-dangle */
+import CryptoJS from 'crypto-js';
+import Client from '../model/Client.js';
+import generateToken from '../utils/generateToken.js';
 
 function decryptText(params) {
-  const decryptText = CryptoJS.AES.decrypt(params, process.env.APP_SECRET).toString(CryptoJS.enc.Utf8)
-  return decryptText;
+  const decryptTexts = CryptoJS.AES.decrypt(params, process.env.APP_SECRET)
+    .toString(CryptoJS.enc.Utf8);
+  return decryptTexts;
 }
 
 class ClientController {
@@ -13,12 +16,12 @@ class ClientController {
     try {
       const result = await Client.findById(id);
       const cpf = (result.cpf).slice(0, 3);
-      const numberCard = decryptText(result.cardData.numberCard).slice(0, 3)
+      const numberCard = decryptText(result.cardData.numberCard).slice(0, 3);
       const resultSucess = {
-        message: 'Sucess',
+        message: 'Success',
         name: result.name,
         cpf: `${cpf}.***.***-**`,
-        numberCard: `${numberCard}**************`
+        numberCard: `${numberCard}**************`,
       };
       res.status(200).send(resultSucess);
     } catch (error) {
@@ -35,26 +38,27 @@ class ClientController {
       const resulFindAll = await Client.find();
 
       const client = resulFindAll.find((clients) => (
-        name === clients.cardData.name & 
-        numberCard === decryptText(clients.cardData.numberCard) & expirationDate === decryptText(clients.cardData.expirationDate) & cvc === decryptText(clients.cardData.cvc)));
+        name === clients.cardData.name
+        && numberCard === decryptText(clients.cardData.numberCard)
+        && expirationDate === decryptText(clients.cardData.expirationDate)
+        && cvc === decryptText(clients.cardData.cvc)));
 
-      if(client){
+      if (client) {
         const resultSucess = {
-          message: 'Sucess',
+          message: 'Success',
           _id: client._id,
           monthlyIncome: client.monthlyIncome,
         };
         console.log(resultSucess);
         res.status(200).send(resultSucess);
-      }
-      else {
+      } else {
         const resultError = {
-        message: 'Invalid Data',
-        _id: '',
-        monthlyIncome: '',
-      };
-      res.status(404).json(resultError);
-    }
+          message: 'Invalid Data',
+          _id: '',
+          monthlyIncome: '',
+        };
+        res.status(404).json(resultError);
+      }
     } catch (error) {
       res.status(500).json(error.message);
     }

@@ -38,7 +38,7 @@ class antiFraudController {
             href: 'http://pagodevs-antifraud:3003/v1/transaction/updatestatus/',
           },
         ];
-        const result = { msg: 'New anti fraud analysis created successfully', linksAnalysis };
+        const result = { message: 'New anti fraud analysis created successfully', linksAnalysis };
         res.status(201).json(result);
       }
     } catch (err) {
@@ -66,9 +66,11 @@ class antiFraudController {
     const { id } = req.params;
     try {
       const result = await AntiFraud.findOne({ transctionId: id });
+      console.log(result.clientId);
       const dataClient = await fetch(
         `http://pagodevs-client:3001/v1/clients/${result.clientId}`,
       ).then((response) => response.json());
+      console.log(dataClient);
       res.status(200).json(dataClient);
     } catch (err) {
       res.status(404).json(err.message);
@@ -88,10 +90,12 @@ class antiFraudController {
         },
       });
       const result = await response.json();
-
       if (result.status) {
-        await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
-        res.status(200).json({ message: 'Status updated' });
+        const updatedTransaction = await AntiFraud.findOneAndUpdate({ transactionId }, { status });
+        if (!updatedTransaction) {
+          res.status(400).json({ message: 'Antifraud transaction not updated' });
+        }
+        res.status(200).json({ message: 'Antifraud transaction updated' });
       } else {
         res.status(response.status).json(result.message);
       }

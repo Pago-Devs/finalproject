@@ -1,7 +1,5 @@
 FROM node
 WORKDIR /app/pagodevs-clients
-COPY package*.json ./
-EXPOSE 3001
-RUN npm install
 COPY . .
+EXPOSE 3001
 ENTRYPOINT npm run dev

@@ -46,11 +46,11 @@ class TransactionController {
       const resultTransaction = await response.json();
       const { _id: clientId, monthlyIncome, message } = resultTransaction;
 
-      if (message === 'Invalid Data' || message === 'Not Found!') {
+      let status = '';
+      if (message !== 'Success') {
         res.status(422).json({ message: 'Invalid Data' });
       }
-      let status = '';
-      if ((monthlyIncome * 0.5) <= req.body.amount) {
+      if (monthlyIncome && (monthlyIncome * 0.5) <= req.body.amount) {
         status = 'Em análise';
       } else {
         status = 'Aprovada';
@@ -72,24 +72,25 @@ class TransactionController {
           {
             rel: 'self',
             method: 'GET',
-            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`,
+            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction._id}`,
           },
           {
             rel: 'confirmation',
             method: 'PATCH',
             status: 'APROVADA',
-            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`,
+            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction._id}`,
           },
           {
             rel: 'cancellation',
             method: 'PATCH',
             status: 'REJEITADA',
-            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`,
+            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction._id}`,
           },
         ];
         const result = { id: createdTransaction.id, status, linksAnalysis };
-        res.status(200).set('Location', `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`).json(result);
-      } else if (status !== 'Em análise' && createdTransaction) {
+        res.status(201).set('Location', `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction._id}`).json(result);
+      }
+      if (status !== 'Em análise' && createdTransaction) {
         const links = [
           {
             rel: 'self',
@@ -99,7 +100,8 @@ class TransactionController {
         ];
         const result = { id: createdTransaction.id, status, links };
         res.status(201).json(result);
-      } else {
+      }
+      if (!createdTransaction) {
         res.status(400).json({ message: 'Not created' });
       }
     } catch (error) {
