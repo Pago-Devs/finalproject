@@ -12,11 +12,12 @@ class ClientController {
     try {
       const result = await Client.findById(id);
       const cpf = (result.cpf).slice(0, 3);
+      const numberCard = decryptText(result.cardData.numberCard).slice(0, 3)
       const resultSucess = {
         message: 'Sucess',
         name: result.name,
         cpf: `${cpf}.***.***-**`,
-        numberCard: decryptText(result.cardData.numberCard)
+        numberCard: `${numberCard}**************`
       };
       res.status(200).send(resultSucess);
     } catch (error) {
@@ -33,20 +34,10 @@ class ClientController {
       const resulFindAll = await Client.find();
 
       const client = resulFindAll.find((clients) => (
-        numberCard === decryptText(clients.cardData.numberCard)));
-      console.log(decryptText(client.cardData.numberCard));
+        name === clients.cardData.name & 
+        numberCard === decryptText(clients.cardData.numberCard) & expirationDate === decryptText(clients.cardData.expirationDate) & cvc === decryptText(clients.cardData.cvc)));
 
-      if(!client) {
-          const resultError = {
-          message: 'Invalid Data',
-          _id: '',
-          monthlyIncome: '',
-        };
-        res.status(404).json(resultError);
-      }
-      else if((client.cardData.name === name)
-      && (expirationDate === decryptText(client.cardData.expirationDate))
-      && (cvc === decryptText(client.cardData.cvc))){
+      if(client){
         const resultSucess = {
           message: 'Sucess',
           _id: client._id,
@@ -55,6 +46,14 @@ class ClientController {
         console.log(resultSucess);
         res.status(200).send(resultSucess);
       }
+      else {
+        const resultError = {
+        message: 'Invalid Data',
+        _id: '',
+        monthlyIncome: '',
+      };
+      res.status(404).json(resultError);
+    }
     } catch (error) {
       res.status(500).json(error.message);
     }
