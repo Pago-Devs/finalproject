@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-undef */
 import { describe, it, jest } from '@jest/globals';
@@ -19,7 +20,7 @@ describe('POST on /v1/transaction', () => {
       json: () => Promise.resolve({
         _id: '64020888cd8abb571043af8a',
         monthlyIncome: 5000,
-        message: '',
+        message: 'Success',
       }),
     }));
     const result = await request(app)
@@ -78,6 +79,15 @@ describe('PATCH from /v1/transaction/:id', () => {
       .expect(400)
       .expect((res) => {
         expect(res.body.message).toBe('Change not allowed');
+      });
+  });
+  it('Must NOT update the status of a transaction due to invalid entries', async () => {
+    await request(app)
+      .patch(`/v1/transaction/${invalidId}`)
+      .send({ status: 'Invalid' })
+      .expect(500)
+      .expect((res) => {
+        expect(res.body.message).toBe('Cast to ObjectId failed for value "64020888cd8abb571043a58k" (type string) at path "_id" for model "transactions"');
       });
   });
 });

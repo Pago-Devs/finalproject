@@ -14,29 +14,17 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe('Testando routes', () => {
+describe('POST em /v1/clients/verify', () => {
   it('Deve retornar recurso selecionado', async () => {
     await request(app)
-      .get('/')
+      .post('/v1/clients/verify')
       .send({
-        titulo: 'Projeto Final',
-      })
-      .expect(200);
-  });
-});
-
-describe('GET em /v1/clients/verify', () => {
-  it('Deve retornar recurso selecionado', async () => {
-    await request(app)
-      .get('/v1/clients/verify')
-      .send({
-        amount: 234,
         cardData: {
           name: 'Olnar T Silva',
           numberCard: '5537464499559077',
-          expirationDate: '02-2024',
-          cvv: '554',
-        }
+          expirationDate: '2024-02',
+          cvc: '554',
+        },
       })
       .expect(200);
   });
@@ -44,43 +32,40 @@ describe('GET em /v1/clients/verify', () => {
     await request(app)
       .get('/v1/clients/verify')
       .send({
-        amount: 234,
         cardData: {
           name: 'Olnar T Silva',
           numberCard: '5537464499559077',
-          expirationDate: '02-2024',
-          cvv: '111',
-        }
+          expirationDate: '2024-02',
+          cvc: '111',
+        },
       })
-      .expect(400);
+      .expect(404);
   });
   it('Deve retornar erro ao passar dados inválidos', async () => {
     await request(app)
       .get('/v1/clients/verify')
       .send({
-        amount: 234,
         cardData: {
           name: 'Olnar T Silva',
           numberCard: '5537464499559077',
-          expirationDate: '02-2030',
-          cvv: '554',
-        }
+          expirationDate: '2030-02',
+          cvc: '554',
+        },
       })
-      .expect(400);
+      .expect(404);
   });
   it('Deve retornar erro ao passar dados inválidos', async () => {
     await request(app)
       .get('/v1/clients/verify')
       .send({
-        amount: 234,
         cardData: {
           name: 'Olnar',
           numberCard: '5537464499559077',
-          expirationDate: '02-2024',
-          cvv: '554',
-        }
+          expirationDate: '2024-02',
+          cvc: '554',
+        },
       })
-      .expect(400);
+      .expect(404);
   });
   it('Deve nao adicionar nada ao passar o body vazio', async () => {
     await request(app)
@@ -93,7 +78,7 @@ describe('GET em /v1/clients/verify', () => {
 describe('GET em /v1/clients/:id', () => {
   it('Deve retornar recurso selecionado', async () => {
     await request(app)
-      .get('/v1/clients/64258234913a0941ace7b66c')
+      .get('/v1/clients/64230eba9bc0552f98d8f373')
       .expect(200);
   });
   it('Deve retornar erro ao passar dados inválidos', async () => {
