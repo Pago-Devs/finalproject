@@ -1,18 +1,9 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable no-underscore-dangle */
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 import Client from '../model/clients.js';
+import CryptoJS from "crypto-js";
 
-function generateToken(consumer) {
-  const payload = {
-    subject: consumer._id,
-  };
-  const newToken = jwt.sign(payload, process.env.APP_SECRET, {
-    expiresIn: '15m',
-  });
-  return newToken;
+function decryptText(params) {
+  const decryptText = CryptoJS.AES.decrypt(params, process.env.APP_SECRET).toString(CryptoJS.enc.Utf8)
+  return decryptText;
 }
 class ClientController {
   static getClientByID = async (req, res) => {
@@ -25,6 +16,7 @@ class ClientController {
         message: 'Sucess',
         name: result.name,
         cpf: `${cpf}.***.***-**`,
+        numberCard: decryptText(result.cardData.numberCard)
       };
       res.status(200).send(resultSucess);
     } catch (error) {
@@ -41,12 +33,20 @@ class ClientController {
       const resulFindAll = await Client.find();
 
       const client = resulFindAll.find((clients) => (
-        bcrypt.compareSync(numberCard, clients.cardData.numberCard)));
-      console.log(client);
+        numberCard === decryptText(clients.cardData.numberCard)));
+      console.log(decryptText(client.cardData.numberCard));
 
-      if ((client.cardData.name === name)
-      && (bcrypt.compareSync(expirationDate, client.cardData.expirationDate))
-      && (bcrypt.compareSync(cvc, client.cardData.cvc))) {
+      if(!client) {
+          const resultError = {
+          message: 'Invalid Data',
+          _id: '',
+          monthlyIncome: '',
+        };
+        res.status(404).json(resultError);
+      }
+      else if((client.cardData.name === name)
+      && (expirationDate === decryptText(client.cardData.expirationDate))
+      && (cvc === decryptText(client.cardData.cvc))){
         const resultSucess = {
           message: 'Sucess',
           _id: client._id,
@@ -54,13 +54,6 @@ class ClientController {
         };
         console.log(resultSucess);
         res.status(200).send(resultSucess);
-      } else {
-        const resultError = {
-          message: 'Invalid Data',
-          _id: '',
-          monthlyIncome: '',
-        };
-        res.status(404).json(resultError);
       }
     } catch (error) {
       res.status(500).json(error.message);
