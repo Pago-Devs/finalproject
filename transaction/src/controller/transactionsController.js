@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable consistent-return */
 import Transaction from '../model/Transaction.js';
 import generateToken from '../utils/generateToken.js';
@@ -46,10 +47,8 @@ class TransactionController {
       const { _id: clientId, monthlyIncome, message } = resultTransaction;
 
       if (message === 'Invalid Data' || message === 'Not Found!') {
-        return res.status(422).json({ message: 'Invalid Data' });
+        res.status(422).json({ message: 'Invalid Data' });
       }
-
-      let links;
       let status = '';
       if ((monthlyIncome * 0.5) <= req.body.amount) {
         status = 'Em análise';
@@ -57,51 +56,52 @@ class TransactionController {
         status = 'Aprovada';
       }
       const transaction = new Transaction({ ...req.body, status, clientId });
-      await transaction.save();
-
-      if (status === 'Em análise') {
-        links = [
-          {
-            rel: 'self',
-            method: 'GET',
-            href: `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`,
-          },
-          {
-            rel: 'confirmation',
-            method: 'PATCH',
-            status: 'APROVADA',
-            href: `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`,
-          },
-          {
-            rel: 'cancellation',
-            method: 'PATCH',
-            status: 'REJEITADA',
-            href: `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`,
-          },
-        ];
-
+      const createdTransaction = await transaction.save();
+      if (status === 'Em análise' && createdTransaction) {
         await fetch('http://pagodevs-antifraud:3003/v1/analysis', {
           method: 'POST',
           body: JSON.stringify({
-            id: transaction.id,
+            id: createdTransaction._id,
             clientId,
           }),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
           },
         });
-        const result = { id: transaction.id, status, links };
-        return res.status(303).set('Location', `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`).json(result);
+        const linksAnalysis = [
+          {
+            rel: 'self',
+            method: 'GET',
+            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`,
+          },
+          {
+            rel: 'confirmation',
+            method: 'PATCH',
+            status: 'APROVADA',
+            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`,
+          },
+          {
+            rel: 'cancellation',
+            method: 'PATCH',
+            status: 'REJEITADA',
+            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`,
+          },
+        ];
+        const result = { id: createdTransaction.id, status, linksAnalysis };
+        res.status(200).set('Location', `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`).json(result);
+      } else if (status !== 'Em análise' && createdTransaction) {
+        const links = [
+          {
+            rel: 'self',
+            method: 'GET',
+            href: `http://pagodevs-transaction:3002/v1/transaction/${createdTransaction.id}`,
+          },
+        ];
+        const result = { id: createdTransaction.id, status, links };
+        res.status(201).json(result);
+      } else {
+        res.status(400).json({ message: 'Not created' });
       }
-      links = [
-        {
-          rel: 'self',
-          method: 'GET',
-          href: `http://pagodevs-transaction:3002/v1/transaction/${transaction.id}`,
-        },
-      ];
-      const result = { id: transaction.id, status, links };
-      return res.status(201).json(result);
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }

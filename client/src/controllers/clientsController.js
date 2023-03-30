@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import Client from '../model/clients.js';
+import Client from '../model/Client.js';
 import generateToken from '../utils/generateToken.js';
 
 class ClientController {

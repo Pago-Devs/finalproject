@@ -1,9 +1,7 @@
-/* eslint-disable no-undef */
-/* eslint-disable import/no-extraneous-dependencies */
 import mongoose from 'mongoose';
 import request from 'supertest';
 import {
-  describe, it,
+  beforeAll, afterAll, describe, it,
 } from '@jest/globals';
 import app from '../app.js';
 
