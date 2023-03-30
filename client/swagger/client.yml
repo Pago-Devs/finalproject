@@ -82,7 +82,7 @@ components:
           type: string
         expirationDate:
           type: string
-          pattern: '(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[012])\/(19|20)\d{2}'
+          pattern: '\d{4}-\d{2}'
         cvv:
           type: string
           minLength: 3
@@ -146,6 +146,8 @@ components:
           type: string
         cpf:
           type: string
+          pattern: '\d{3}\.\*{3}\.\*{3}-\*{2}'
         numberCard: 
-          type: number
+          type: string
+          pattern: '\d{3}\*{13}'
         

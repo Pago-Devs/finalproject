@@ -30,10 +30,13 @@ describe('GET em /v1/clients/verify', () => {
     await request(app)
       .get('/v1/clients/verify')
       .send({
-        name: 'Olnar T Silva',
-        numberCard: '5537464499559077',
-        expirationDate: '27/02/2024',
-        cvv: '554',
+        amount: 234,
+        cardData: {
+          name: 'Olnar T Silva',
+          numberCard: '5537464499559077',
+          expirationDate: '02-2024',
+          cvv: '554',
+        }
       })
       .expect(200);
   });
@@ -41,10 +44,13 @@ describe('GET em /v1/clients/verify', () => {
     await request(app)
       .get('/v1/clients/verify')
       .send({
-        name: 'Olnar T Silva',
-        numberCard: '5537464499559077',
-        expirationDate: '27/02/2024',
-        cvv: '111',
+        amount: 234,
+        cardData: {
+          name: 'Olnar T Silva',
+          numberCard: '5537464499559077',
+          expirationDate: '02-2024',
+          cvv: '111',
+        }
       })
       .expect(400);
   });
@@ -52,10 +58,13 @@ describe('GET em /v1/clients/verify', () => {
     await request(app)
       .get('/v1/clients/verify')
       .send({
-        name: 'Olnar T Silva',
-        numberCard: '5537464499559077',
-        expirationDate: '27/02/2030',
-        cvv: '554',
+        amount: 234,
+        cardData: {
+          name: 'Olnar T Silva',
+          numberCard: '5537464499559077',
+          expirationDate: '02-2030',
+          cvv: '554',
+        }
       })
       .expect(400);
   });
@@ -63,16 +72,19 @@ describe('GET em /v1/clients/verify', () => {
     await request(app)
       .get('/v1/clients/verify')
       .send({
-        name: 'Olnar',
-        numberCard: '5537464499559077',
-        expirationDate: '27/02/2024',
-        cvv: '554',
+        amount: 234,
+        cardData: {
+          name: 'Olnar',
+          numberCard: '5537464499559077',
+          expirationDate: '02-2024',
+          cvv: '554',
+        }
       })
       .expect(400);
   });
   it('Deve nao adicionar nada ao passar o body vazio', async () => {
     await request(app)
-      .post('/v1/clients/verify')
+      .get('/v1/clients/verify')
       .send({})
       .expect(404);
   });
@@ -81,12 +93,12 @@ describe('GET em /v1/clients/verify', () => {
 describe('GET em /v1/clients/:id', () => {
   it('Deve retornar recurso selecionado', async () => {
     await request(app)
-      .get('/v1/clients/6422dbf3a320cb145d974f2d')
+      .get('/v1/clients/64258234913a0941ace7b66c')
       .expect(200);
   });
   it('Deve retornar erro ao passar dados inválidos', async () => {
     await request(app)
-      .post('/v1/clients/111111')
+      .get('/v1/clients/111111')
       .expect(404);
   });
 });
