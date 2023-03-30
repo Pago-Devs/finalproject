@@ -17,7 +17,7 @@ db.clients.insertMany([{
     cardData: {
         name: "Olnar T Silva",
         numberCard: "5537464499559077",
-        expirationDate: "02-2024",
+        expirationDate: "2024-02",
         cvc: "554",
         dueDate: 1
     }
@@ -80,7 +80,7 @@ db.clients.insertMany([{
     cardData: {
         name: "Rirod A Pereira",
         numberCard: "5494095717804209",
-        expirationDate: "10-2023",
+        expirationDate: "2023-10",
         cvc: "939",
         dueDate: 25
     }
