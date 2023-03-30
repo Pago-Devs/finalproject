@@ -1,6 +1,5 @@
-/* eslint-disable object-shorthand */
 /* eslint-disable no-underscore-dangle */
-import AntiFraud from '../models/antifraud.js';
+import AntiFraud from '../models/Antifraud.js';
 import generateToken from '../utils/generateToken.js';
 
 class antiFraudController {
@@ -25,7 +24,6 @@ class antiFraudController {
       } else {
         res.status(201).send('Successfully Created!');
       }
-
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -50,7 +48,7 @@ class antiFraudController {
   static getDataClient = async (req, res) => {
     const { id } = req.params;
     try {
-      const result = await AntiFraud.findOne({transctionId: id});
+      const result = await AntiFraud.findOne({ transctionId: id });
       const dataClient = await fetch(
         `http://pagodevs-client:3001/v1/clients/${result.clientId}`,
       ).then((response) => response.json());
@@ -66,24 +64,24 @@ class antiFraudController {
       const response = await fetch(`http://pagodevs-transaction:3002/v1/transaction/${transactionId}`, {
         method: 'PATCH',
         body: JSON.stringify({
-          status: status,
+          status,
         }),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       });
       const result = await response.json();
-  
-      if (result.status){
-        const result = await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
+
+      if (result.status) {
+        await AntiFraud.findByIdAndUpdate(response.transactionId, { status });
         res.status(200).json({ message: 'Status updated' });
       } else {
         res.status(response.status).json(result.message);
       }
-    } catch(err) {
+    } catch (err) {
       res.status(500).json(err.message);
     }
-  }
+  };
 }
 
 export default antiFraudController;

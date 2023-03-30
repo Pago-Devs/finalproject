@@ -13,7 +13,7 @@ const accountProxy = createProxyMiddleware({
 const authenticateBearer = passport.authenticate('bearer', { session: false });
 
 clientRoutes
-  .post('/clients/login', accountProxy)
+  .post('/v1/clients/login', accountProxy)
   .post('/v1/clients/verify', authenticateBearer, accountProxy)
   .get('/v1/clients/:id', authenticateBearer, accountProxy);
 
