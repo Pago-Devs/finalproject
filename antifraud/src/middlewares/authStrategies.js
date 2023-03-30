@@ -1,7 +1,7 @@
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 import { Strategy as LocalStrategy } from 'passport-local';
-import ApiConsumer from '../model/ApiConsumer.js';
+import ApiConsumer from '../models/ApiConsumer.js';
 import createCustomError from './customError.js';
 
 const decrypt = (password, hash) => bcrypt.compareSync(password, hash);

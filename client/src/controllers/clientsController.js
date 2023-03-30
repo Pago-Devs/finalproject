@@ -5,6 +5,7 @@ function decryptText(params) {
   const decryptText = CryptoJS.AES.decrypt(params, process.env.APP_SECRET).toString(CryptoJS.enc.Utf8)
   return decryptText;
 }
+
 class ClientController {
   static getClientByID = async (req, res) => {
     const { id } = req.params;
@@ -59,9 +60,14 @@ class ClientController {
     }
   }
 
-  static login = async (req, res) => {
-    const token = await generateToken(req.user);
-    return res.set('Authorization', token).status(204).send();
+  static login = (req, res) => {
+    try {
+      const { id } = req.user;
+      const token = generateToken(id);
+      res.status(204).set('Authorization', token).send();
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
   };
 }
 
