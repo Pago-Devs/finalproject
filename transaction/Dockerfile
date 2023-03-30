@@ -1,5 +1,6 @@
 FROM node
 WORKDIR /app/pagodevs-transaction
-COPY . .
+COPY package*.json ./
 EXPOSE 3002
-ENTRYPOINT npm run dev
+COPY . .
+ENTRYPOINT npm start
