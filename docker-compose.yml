@@ -1,0 +1,58 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:5.0
+    volumes:
+      - db-pagodevs-mongo:/data/db
+    container_name: pagodevs-mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+
+  transaction:
+    build: ./transaction
+    container_name: pagodevs-transaction
+    volumes:
+      - ./transaction/:/app/pagodevs-transaction
+    ports:
+      - 3002:3002
+    depends_on:
+      - mongodb
+
+  client:
+    build: ./client
+    container_name: pagodevs-client
+    volumes:
+      - ./client/:/app/pagodevs-client
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongodb
+
+  antifraud:
+    build: ./antifraud
+    container_name: pagodevs-antifraud
+    volumes:
+      - ./antifraud/:/app/pagodevs-antifraud
+    ports:
+      - 3003:3003
+    depends_on:
+      - mongodb
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: pagodevs-api-gateway
+    volumes:
+      - ./api-gateway:/app/pagodevs-api-gateway
+    ports:
+      - 3000:3000
+    depends_on:
+      - antifraud
+      - client
+      - transaction
+
+volumes:
+  db-pagodevs-mongo:

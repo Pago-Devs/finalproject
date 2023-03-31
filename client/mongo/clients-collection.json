@@ -1,0 +1,131 @@
+[{
+  "_id": {
+    "$oid": "64230eba9bc0552f98d8f373"
+  },
+  "name": "Olnar",
+  "cpf": "665.072.150-66",
+  "email": "olnar@example.com",
+  "telephone": "(95)92192-6333",
+  "monthlyIncome": {
+    "$numberDecimal": "4000.00"
+  },
+  "address": {
+    "street": "Rua da Pedra do Reino",
+    "number": "725",
+    "complement": "S/N",
+    "zipCode": "58069-545",
+    "city": "João Pessoa",
+    "state": "PB"
+  },
+  "cardData": {
+    "name": "Olnar T Silva",
+    "numberCard": "U2FsdGVkX1+I+u2w9CI0ppY58t38AHX9AsEItkawuX5PgjDCJ3lnPz1wpeFnsNcy",
+    "expirationDate": "U2FsdGVkX1/SmEasZqjLj6wUEtY+xlzoQIdAv2CUeyA=",
+    "cvc": "U2FsdGVkX1+CKr3SUaOcs6gJ39B8VFnuCxuHeTObgmk=",
+    "dueDate": 1
+  }
+},{
+  "_id": {
+    "$oid": "64230eba9bc0552f98d8f374"
+  },
+  "name": "Cayis",
+  "cpf": "952.015.660-73",
+  "email": "cayis@example.com",
+  "telephone": "(86)93503-2116",
+  "monthlyIncome": {
+    "$numberDecimal": "5500.00"
+  },
+  "address": {
+    "street": "Rua Doutor Pergentino Maia",
+    "number": "2121",
+    "complement": "Casa 6",
+    "zipCode": "60840-045",
+    "city": "Fortaleza",
+    "state": "CE"
+  },
+  "cardData": {
+    "name": "Cayis E Souza",
+    "numberCard": "U2FsdGVkX19KG/VJdk/45z5ew7NCVji1K8TQKNxNjRW1Sxp12Sl9QM4ai6QZGuKm",
+    "expirationDate": "U2FsdGVkX1+3bSSilKaV5JIBx+GG5EuQRVAmDkMyyFk=",
+    "cvc": "U2FsdGVkX1+8G7BVuxRTLrK/j3xwoNXK5capLvxgZW4=",
+    "dueDate": 5
+  }
+},{
+  "_id": {
+    "$oid": "64230eba9bc0552f98d8f375"
+  },
+  "name": "Naxun",
+  "cpf": "345.071.270-50",
+  "email": "naxun@example.com",
+  "telephone": "(97)937154732",
+  "monthlyIncome": {
+    "$numberDecimal": "2300.00"
+  },
+  "address": {
+    "street": "Rua Boca de Leão",
+    "number": "123",
+    "complement": "Apto 9",
+    "zipCode": "54280-536",
+    "city": "Jaboatão dos Guararapes",
+    "state": "PE"
+  },
+  "cardData": {
+    "name": "Naxun P Santos",
+    "numberCard": "U2FsdGVkX1/ycfXPGjHCWX1QYZjn4sUJ5ntWemLj4P23pxdM0IaSsv7cjPKrbuX/",
+    "expirationDate": "U2FsdGVkX1877vomwfUifD4pJXoli3dOfBh5truV/ro=",
+    "cvc": "U2FsdGVkX186+4rKR/N2KfdJ7n6utQLF4+dueYUy/f8=",
+    "dueDate": 10
+  }
+},{
+  "_id": {
+    "$oid": "64230eba9bc0552f98d8f376"
+  },
+  "name": "Rirod",
+  "cpf": "383.966.770-42",
+  "email": "rirod@example.com",
+  "telephone": "(32)936332723",
+  "monthlyIncome": {
+    "$numberDecimal": "7250.00"
+  },
+  "address": {
+    "street": "Rua Projetada",
+    "number": "932",
+    "complement": "S/N",
+    "zipCode": "57048-732",
+    "city": "Maceió",
+    "state": "AL"
+  },
+  "cardData": {
+    "name": "Rirod A Pereira",
+    "numberCard": "U2FsdGVkX1+4g0bZObZzkPFuPYCAiaiR0qi6mPYnMF613wA2s3+YqJzHQpzSJNrr",
+    "expirationDate": "U2FsdGVkX18U08w7OgXGS0sALzMAYtgwJHvAhkopntY=",
+    "cvc": "U2FsdGVkX1+0wU7CsM7azG09U9NaWC2Q2ER6yMGjv28=",
+    "dueDate": 25
+  }
+},{
+  "_id": {
+    "$oid": "64230eba9bc0552f98d8f377"
+  },
+  "name": "Fomyu",
+  "cpf": "699.343.740-64",
+  "email": "fomyu@example.com",
+  "telephone": "(21)923795774",
+  "monthlyIncome": {
+    "$numberDecimal": "4730.00"
+  },
+  "address": {
+    "street": "Rua Dom Pedro I",
+    "number": "S/N",
+    "complement": "S/N",
+    "zipCode": "29903-180",
+    "city": "Linhares",
+    "state": "ES"
+  },
+  "cardData": {
+    "name": "Fomyu S Aquiles",
+    "numberCard": "U2FsdGVkX19ZaqCISuu3+atp3EkoxCCsAoGVAeNepfaOvrqT03cIgCwL0wbbGSCt",
+    "expirationDate": "U2FsdGVkX18H00RCrx9b4J2RznGkznbKmcFxMP7MakY=",
+    "cvc": "U2FsdGVkX18PQfUv0gCSEOv8tQR1+QlPDM0itMhLQxE=",
+    "dueDate": 30
+  }
+}]

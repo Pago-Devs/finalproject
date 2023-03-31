@@ -1,0 +1,24 @@
+use('pagodevs-transaction');
+
+db.transactions.insertMany([{
+    amount: NumberDecimal("400.00"),
+    clientId: '6421bb4c0e285a57e3b6854e',
+    status: 'Aprovada',
+    cardData: {
+        name: "Olnar T Silva",
+        numberCard: "5537464499559077",
+        expirationDate: "02-2024",
+        cvc: "554",
+    }
+}, {
+	amount: NumberDecimal("4000.00"),
+    clientId: '6421bb4c0e285a57e3b6854f',
+    status: 'Em análise',
+    cardData: {
+        name: "Cayis E Souza",
+        numberCard: "5344374117792369",
+        expirationDate: "2024-06",
+        cvc: "237",
+    }
+}
+])

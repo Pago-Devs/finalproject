@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: Transactions
+  version: 0.0.1
+  contact:
+    name: PagoDevs
+paths:
+  /v1/transaction/login:
+    post:
+      summary: Login
+      responses:
+        '204':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '500':
+          description: Login failed
+          content:
+            application/json:
+              example: Bad Request
+  /v1/transaction/:id:
+    get:
+      summary: Find the transaction
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '404':
+          description: No data entered
+          content:
+            application/json:
+              example: Transaction not Found
+        '500':
+          description: No transaction registered
+          content:
+            application/json:
+              example: Transaction not Found
+    patch:
+      summary: Update the status
+      responses:
+        '204':
+          description: Success
+        '500':
+          description: No category registered
+          content:
+            application/json:
+              example: Transaction not Found
+  /v1/transaction:
+    post:
+      summary: Create a transaction
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '422':
+          description: Invalid data
+          content:
+            application/json:
+              example: TInvalid data
+        '500':
+          description: Failed to save transaction
+          content:
+            application/json:
+              example: Error
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        _id:
+          type: string
+        amount:
+          type: number
+        idCliente:
+          type: string
+        status:
+          type: string
+        cardData:
+          type: object
+          properties:
+            name:
+              type: string
+            numberCard:
+              type: string
+            expirationDate:
+              type: string
+            cvc:
+              type: string

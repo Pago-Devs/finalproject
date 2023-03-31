@@ -1,0 +1,859 @@
+{
+	"info": {
+		"_postman_id": "ca6ff024-d0bc-40f5-9af0-4e28d3d92056",
+		"name": "PagoDevs - Final Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25596370"
+	},
+	"item": [
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "AntiFraud-Login Antifraud",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bryam@example.com\",\r\n    \"password\": \"bryam123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/analysis/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"analysis",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AntiFraud-Create Analysis",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/analysis/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"analysis",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AntiFraud-Find All Analysis",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/analysis/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"analysis",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AntiFraud-Verify Client Data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/analysis/dataclient/6425a78993e00f341fda4de4\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"analysis",
+								"dataclient",
+								"6425a78993e00f341fda4de4\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AntiFraud-Update Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transactionId\": \"6425e915ddb3e7e82c8df72a\",\r\n    \"status\": \"Aprovada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/analysis/updatestatus/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"analysis",
+								"updatestatus",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client-Login Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bryam@example.com\",\r\n    \"password\": \"bryam123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/clients/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"clients",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client-Find Client By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/clients/64230eba9bc0552f98d8f373",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"clients",
+								"64230eba9bc0552f98d8f373"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ4NDMwZmZiN2RjNGI3OGNmZDczMSIsImlhdCI6MTY4MDExNzE0MCwiZXhwIjoxNjgwMjAzNTQwfQ.SYXou8lFOkYltY5ugstp45ZD3I4WG_aPdPTnVqkxNO0",
+									"disabled": true
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDEyMDA4MywiZXhwIjoxNjgwMjA2NDgzfQ.3iOZ3YSEHyt5mikW79M4ci1LQ1Q6wMx0VF3-Y7M-acg",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Client-Verify Client Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/clients/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"clients",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaction-Login Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bryam@example.com\",\r\n    \"password\": \"bryam123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/transaction/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"transaction",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaction-Find Transaction By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/v1/transaction/6424568d5f4f683c582d4b44",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"transaction",
+								"6424568d5f4f683c582d4b44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaction-Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 123,\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status Transaction Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDE3NzU5OSwiZXhwIjoxNjgwMjYzOTk5fQ.PgcKemq1iOgCKYL1TAR79KwsUwqoPJuaLfEgGWvlGp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Aprovada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/transaction/642456b4e8e1d99f8b331e92",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"transaction",
+								"642456b4e8e1d99f8b331e92"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AntiFraud",
+			"item": [
+				{
+					"name": "Login Antifraud",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bryam@example.com\",\r\n    \"password\": \"bryam123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/v1/analysis/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"v1",
+								"analysis",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Analysis",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQzZWY1ZGY1MTgxZDdhMWUyMWEzZSIsImlhdCI6MTY4MDA5NzA0NCwiZXhwIjoxNjgwMTgzNDQ0fQ.O1XC9U9RtBY7sx2A7vWI3pCB316E9ddz2pW3hr-yjG0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 1234000,\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/v1/analysis/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"v1",
+								"analysis",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Client Data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/v1/analysis/dataclient/6424568d5f4f683c582d4b44\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"v1",
+								"analysis",
+								"dataclient",
+								"6424568d5f4f683c582d4b44\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All Analysis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/v1/analysis/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"v1",
+								"analysis",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transactionId\": \"642456b4e8e1d99f8b331e92\",\r\n    \"status\": \"Aprovada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/v1/analysis/updatestatus/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"v1",
+								"analysis",
+								"updatestatus",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Login Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bryam@example.com\",\r\n    \"password\": \"bryam123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/v1/client/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"v1",
+								"client",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Client By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDEyMDA4MywiZXhwIjoxNjgwMjA2NDgzfQ.3iOZ3YSEHyt5mikW79M4ci1LQ1Q6wMx0VF3-Y7M-acg",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/v1/clients/642456095907f7398ed2d4a7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"v1",
+								"clients",
+								"642456095907f7398ed2d4a7"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ4NDMwZmZiN2RjNGI3OGNmZDczMSIsImlhdCI6MTY4MDExNzE0MCwiZXhwIjoxNjgwMjAzNTQwfQ.SYXou8lFOkYltY5ugstp45ZD3I4WG_aPdPTnVqkxNO0",
+									"disabled": true
+								},
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ5NWUyOGY1NGE4ZWQ3NTliMzMwZSIsImlhdCI6MTY4MDEyMDA4MywiZXhwIjoxNjgwMjA2NDgzfQ.3iOZ3YSEHyt5mikW79M4ci1LQ1Q6wMx0VF3-Y7M-acg",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Client Data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 200034,\r\n    \"cardData\": {\r\n        \"name\": \"Olnar T Silva\",\r\n        \"numberCard\": \"5537464499559077\",\r\n        \"expirationDate\": \"02-2024\",\r\n        \"cvv\": \"554\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/v1/clients/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"v1",
+								"clients",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Login Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bryam@example.com\",\r\n    \"password\": \"bryam123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/v1/transaction/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"v1",
+								"transaction",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Transaction By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjQ4NDMwZmZiN2RjNGI3OGNmZDczMSIsImlhdCI6MTY4MDExNzE0MCwiZXhwIjoxNjgwMjAzNTQwfQ.SYXou8lFOkYltY5ugstp45ZD3I4WG_aPdPTnVqkxNO0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3002/v1/transaction/6424568d5f4f683c582d4b44",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"v1",
+								"transaction",
+								"6424568d5f4f683c582d4b44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 1234,\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/v1/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"v1",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status Transaction",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Aprovada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3002/v1/transaction/642456b4e8e1d99f8b331e92",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"v1",
+								"transaction",
+								"642456b4e8e1d99f8b331e92"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
