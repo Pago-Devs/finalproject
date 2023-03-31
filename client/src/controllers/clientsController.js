@@ -4,6 +4,13 @@ import Client from '../model/Client.js';
 import generateToken from '../utils/generateToken.js';
 
 function decryptText(params) {
+  // APP_SECRET =
+  // WHlwdAfmQBWDktJAFyUHf++eIaZCJLbdoT0x9MRdwkK0FT//gPjG
+  // lnxsvucvcUZEEqzXgc6fgMUCGvDfITSqIxxyRCxFn3GiuOUaWOnPB3xbnnk
+  // EhjufTUYffzwFUoQIwGxUA6en8lm1BlbmHur42iTzFvZTB3TRHLXW/ELEniEDSLzS
+  // jASpYRi9PctbUvZ3gE9EOqUGVR5Mt3Z5vORs2I6eow2ju4CyehcrvYDO4vy6+
+  // 35CNniN4+ZwLwS+yf/ff9ZH9DaF2zTh++tSKuajJgLlGlJLlPPVoEiqPeafjqWA
+  // bnpIBol+21/IFOGLqDqaKoYnobEcAcmLeufYParEPg==
   const decryptTexts = CryptoJS.AES.decrypt(params, process.env.APP_SECRET)
     .toString(CryptoJS.enc.Utf8);
   return decryptTexts;
@@ -49,7 +56,6 @@ class ClientController {
           _id: client._id,
           monthlyIncome: client.monthlyIncome,
         };
-        console.log(resultSucess);
         res.status(200).send(resultSucess);
       } else {
         const resultError = {

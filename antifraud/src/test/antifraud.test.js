@@ -37,27 +37,3 @@ describe('GET em /v1/analysis/dataclient/:id', () => {
       .expect(404);
   });
 });
-
-// describe('POST em /v1/analysis/', () => {
-//   it('Deve adicionar uma nova verificação de antifraude', async () => {
-//     await request(app)
-//       .post('/v1/analysis/')
-//       .send({
-//         transactionId: '6425a78893e00f341fda4de2',
-//         clientId: '64230eba9bc0552f98d8f374',
-//       })
-//       .expect(201);
-//   });
-
-//   describe('PATCH em /v1/analysis/updatestatus', () => {
-//     it('Deve atualizar o status', async () => {
-//       await request(app)
-//         .patch('/v1/analysis/updatestatus/')
-//         .send({
-//           clientId: '64230eba9bc0552f98d8f374',
-//           status: 'Aprovada',
-//         })
-//         .expect(201);
-//     });
-//   });
-// });

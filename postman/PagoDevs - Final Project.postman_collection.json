@@ -59,7 +59,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\": 1234000,\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -106,7 +106,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/v1/analysis/all\n",
+							"raw": "http://localhost:3000/v1/analysis/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -115,7 +115,7 @@
 							"path": [
 								"v1",
 								"analysis",
-								"all\n"
+								""
 							]
 						}
 					},
@@ -145,7 +145,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/v1/analysis/dataclient/6424568d5f4f683c582d4b44\n",
+							"raw": "http://localhost:3000/v1/analysis/dataclient/6425a78993e00f341fda4de4\n",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -155,7 +155,7 @@
 								"v1",
 								"analysis",
 								"dataclient",
-								"6424568d5f4f683c582d4b44\n"
+								"6425a78993e00f341fda4de4\n"
 							]
 						}
 					},
@@ -174,7 +174,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"transactionId\": \"642456b4e8e1d99f8b331e92\",\r\n    \"status\": \"Aprovada\"\r\n}",
+							"raw": "{\r\n    \"transactionId\": \"6425e915ddb3e7e82c8df72a\",\r\n    \"status\": \"Aprovada\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -182,12 +182,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3003/v1/analysis/updatestatus/",
+							"raw": "http://localhost:3000/v1/analysis/updatestatus/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3003",
+							"port": "3000",
 							"path": [
 								"v1",
 								"analysis",
@@ -252,7 +252,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/v1/clients/642456095907f7398ed2d4a7",
+							"raw": "http://localhost:3000/v1/clients/64230eba9bc0552f98d8f373",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -261,7 +261,7 @@
 							"path": [
 								"v1",
 								"clients",
-								"642456095907f7398ed2d4a7"
+								"64230eba9bc0552f98d8f373"
 							],
 							"query": [
 								{
@@ -292,7 +292,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\": 200034,\r\n    \"cardData\": {\r\n        \"name\": \"Olnar T Silva\",\r\n        \"numberCard\": \"5537464499559077\",\r\n        \"expirationDate\": \"02-2024\",\r\n        \"cvv\": \"554\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -385,7 +385,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\": 1234,\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"amount\": 123,\r\n    \"cardData\": {\r\n        \"name\": \"Cayis E Souza\",\r\n        \"numberCard\": \"5344374117792369\",\r\n        \"expirationDate\": \"2024-06\",\r\n        \"cvc\": \"237\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

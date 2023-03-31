@@ -19,9 +19,7 @@ passport.use(
     passwordField: 'password',
     session: false,
   }, (email, password, done) => {
-    console.log(email);
     ApiConsumer.findOne({ email }, (err, consumer) => {
-      console.log(consumer);
       if (err) {
         return done(err);
       }

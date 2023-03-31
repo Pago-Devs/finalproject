@@ -1,7 +1,7 @@
 import app from './src/app.js';
 
-const port = 3000;
+const PORT = 3000;
 
-app.listen(port, () => {
-  console.log(`API Gateway is listening on ${port}`);
+app.listen(PORT, () => {
+  console.log(`API Gateway is listening on ${PORT}`);
 });

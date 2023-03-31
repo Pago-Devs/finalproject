@@ -3,6 +3,7 @@ import db from './config/dbConnect.js';
 import routes from './routes/index.js';
 import './middlewares/authStrategies.js';
 
+db.on('error', () => { console.log('Connection Error'); });
 db.once('open', () => {
   console.log('Db successfully connected!');
 });
